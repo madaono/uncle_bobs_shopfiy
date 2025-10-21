@@ -12,9 +12,18 @@
     "main": {
       "type": "homepage-hero",
       "settings": {}
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "section_title": "Our Best Sellers",
+        "section_description": "Discover our most popular fishing gear and accessories",
+        "products_to_show": 8
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "featured_products"
   ]
 }
