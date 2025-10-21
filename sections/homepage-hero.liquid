@@ -2,49 +2,47 @@
   Uncle Bob's Homepage Hero Section
 {% endcomment %}
 
-<div class="hero full-width">
-  <div class="hero__background">
-    <img src="{{ 'banner.png' | asset_url }}" alt="Fishing Adventure" class="hero__image">
-  </div>
-  
-  <div class="hero__content">
-    <div class="hero__container">
-      <div class="hero__text">
-        <div class="hero__badge">Premium Fishing Experience</div>
-        <h1 class="hero__title">{{ section.settings.hero_title | default: "Welcome to Uncle Bob's" }}</h1>
-        <p class="hero__subtitle">{{ section.settings.hero_subtitle | default: "Elevate Your Angling Adventure" }}</p>
-        <p class="hero__description">
-          {{ section.settings.hero_description | default: "Through quality products, we help you achieve an enjoyable fishing experience. Discover our premium fishing gear, tackle, and accessories designed for the serious angler." }}
-        </p>
-        <div class="hero__actions">
-          <a href="{{ routes.collections_url }}" class="btn btn-primary">
-            <span>{{ section.settings.primary_button_text | default: "Shop Now" }}</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="#featured-products" class="btn btn-secondary">
-            <span>{{ section.settings.secondary_button_text | default: "Explore Products" }}</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 12l2 2 4-4"/>
-            </svg>
-          </a>
-        </div>
+<div class="hero-banner">
+  <img src="{{ 'banner.png' | asset_url }}" alt="Fishing Adventure" class="hero-banner__image">
+</div>
+
+<div class="hero-content">
+  <div class="hero-content__container">
+    <div class="hero-content__text">
+      <div class="hero-content__badge">Premium Fishing Experience</div>
+      <h1 class="hero-content__title">{{ section.settings.hero_title | default: "Welcome to Uncle Bob's" }}</h1>
+      <p class="hero-content__subtitle">{{ section.settings.hero_subtitle | default: "Elevate Your Angling Adventure" }}</p>
+      <p class="hero-content__description">
+        {{ section.settings.hero_description | default: "Through quality products, we help you achieve an enjoyable fishing experience. Discover our premium fishing gear, tackle, and accessories designed for the serious angler." }}
+      </p>
+      <div class="hero-content__actions">
+        <a href="{{ routes.collections_url }}" class="btn btn-primary">
+          <span>{{ section.settings.primary_button_text | default: "Shop Now" }}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#featured-products" class="btn btn-secondary">
+          <span>{{ section.settings.secondary_button_text | default: "Explore Products" }}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </a>
       </div>
-      
-      <div class="hero__visual">
-        <div class="hero__logo-container">
-          <img src="{{ 'logo_cir.png' | asset_url }}" alt="Uncle Bob's Logo" class="hero__logo">
+    </div>
+    
+    <div class="hero-content__visual">
+      <div class="hero-content__logo-container">
+        <img src="{{ 'logo_cir.png' | asset_url }}" alt="Uncle Bob's Logo" class="hero-content__logo">
+      </div>
+      <div class="hero-content__stats">
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Years Experience</span>
         </div>
-        <div class="hero__stats">
-          <div class="stat-item">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Years Experience</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">1000+</span>
-            <span class="stat-label">Happy Customers</span>
-          </div>
+        <div class="stat-item">
+          <span class="stat-number">1000+</span>
+          <span class="stat-label">Happy Customers</span>
         </div>
       </div>
     </div>
@@ -129,57 +127,45 @@
 </div>
 
 {% stylesheet %}
-  .hero {
+  .hero-banner {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     position: relative;
-    height: 80vh;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
   }
 
-  .hero__background {
-    position: relative;
-    top: 0;
-    left: 0;
+  .hero-banner__image {
     width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-
-  .hero__image {
-    width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
     object-fit: cover;
     object-position: center;
   }
 
-  .hero__content {
+  .hero-content {
+    background: var(--brand-background);
+    padding: 4rem 0;
     position: relative;
-    z-index: 3;
-    width: 100%;
+  }
+
+  .hero-content__container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-  }
-
-  .hero__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
   }
 
-  .hero__text {
-    color: var(--brand-background);
+  .hero-content__text {
+    color: var(--brand-text);
   }
 
-  .hero__badge {
+  .hero-content__badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
     color: var(--brand-background);
     padding: 0.5rem 1.5rem;
     border-radius: 50px;
@@ -190,38 +176,37 @@
     margin-bottom: 1.5rem;
   }
 
-  .hero__title {
+  .hero-content__title {
     font-size: 4rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--brand-text);
     line-height: 1.1;
   }
 
-  .hero__subtitle {
+  .hero-content__subtitle {
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--ocean-light);
+    color: var(--brand-primary);
     margin-bottom: 2rem;
     font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   }
 
-  .hero__description {
+  .hero-content__description {
     font-size: 1.2rem;
     line-height: 1.7;
     margin-bottom: 3rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: var(--brand-text-muted);
     max-width: 500px;
   }
 
-  .hero__actions {
+  .hero-content__actions {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
   }
 
-  .hero__actions .btn {
+  .hero-content__actions .btn {
     padding: 1.2rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -234,49 +219,47 @@
     transition: all 0.3s ease;
   }
 
-  .hero__visual {
+  .hero-content__visual {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
   }
 
-  .hero__logo-container {
+  .hero-content__logo-container {
     position: relative;
     width: 200px;
     height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 102, 204, 0.2);
   }
 
-  .hero__logo {
+  .hero-content__logo {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
   }
 
-  .hero__stats {
+  .hero-content__stats {
     display: flex;
     gap: 2rem;
   }
 
   .stat-item {
     text-align: center;
-    color: var(--brand-background);
+    color: var(--brand-text);
   }
 
   .stat-number {
     display: block;
     font-size: 2rem;
     font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: var(--brand-primary);
   }
 
   .stat-label {
@@ -284,7 +267,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0.9;
+    color: var(--brand-text-muted);
   }
 
   .features {
@@ -527,43 +510,38 @@
 
   /* Mobile responsiveness */
   @media (max-width: 768px) {
-    .hero {
-      height: auto;
-      min-height: 100vh;
-    }
-
-    .hero__container {
+    .hero-content__container {
       grid-template-columns: 1fr;
       gap: 2rem;
       text-align: center;
     }
 
-    .hero__title {
+    .hero-content__title {
       font-size: 3rem;
     }
 
-    .hero__subtitle {
+    .hero-content__subtitle {
       font-size: 1.5rem;
     }
 
-    .hero__description {
+    .hero-content__description {
       font-size: 1.1rem;
     }
 
-    .hero__actions {
+    .hero-content__actions {
       justify-content: center;
     }
 
-    .hero__visual {
+    .hero-content__visual {
       order: -1;
     }
 
-    .hero__logo-container {
+    .hero-content__logo-container {
       width: 150px;
       height: 150px;
     }
 
-    .hero__logo {
+    .hero-content__logo {
       width: 100px;
       height: 100px;
     }
@@ -595,24 +573,24 @@
   }
 
   @media (max-width: 480px) {
-    .hero__title {
+    .hero-content__title {
       font-size: 2.5rem;
     }
 
-    .hero__subtitle {
+    .hero-content__subtitle {
       font-size: 1.3rem;
     }
 
-    .hero__content {
+    .hero-content__container {
       padding: 0 1rem;
     }
 
-    .hero__logo-container {
+    .hero-content__logo-container {
       width: 120px;
       height: 120px;
     }
 
-    .hero__logo {
+    .hero-content__logo {
       width: 80px;
       height: 80px;
     }
