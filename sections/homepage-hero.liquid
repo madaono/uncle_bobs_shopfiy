@@ -1,0 +1,684 @@
+{% comment %}
+  Uncle Bob's Homepage Hero Section
+{% endcomment %}
+
+<div class="hero full-width">
+  <div class="hero__background">
+    <img src="{{ 'banner.png' | asset_url }}" alt="Fishing Adventure" class="hero__image">
+  </div>
+  
+  <div class="hero__content">
+    <div class="hero__container">
+      <div class="hero__text">
+        <div class="hero__badge">Premium Fishing Experience</div>
+        <h1 class="hero__title">{{ section.settings.hero_title | default: "Welcome to Uncle Bob's" }}</h1>
+        <p class="hero__subtitle">{{ section.settings.hero_subtitle | default: "Elevate Your Angling Adventure" }}</p>
+        <p class="hero__description">
+          {{ section.settings.hero_description | default: "Through quality products, we help you achieve an enjoyable fishing experience. Discover our premium fishing gear, tackle, and accessories designed for the serious angler." }}
+        </p>
+        <div class="hero__actions">
+          <a href="{{ routes.collections_url }}" class="btn btn-primary">
+            <span>{{ section.settings.primary_button_text | default: "Shop Now" }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#featured-products" class="btn btn-secondary">
+            <span>{{ section.settings.secondary_button_text | default: "Explore Products" }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero__visual">
+        <div class="hero__logo-container">
+          <img src="{{ 'logo_cir.png' | asset_url }}" alt="Uncle Bob's Logo" class="hero__logo">
+        </div>
+        <div class="hero__stats">
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1000+</span>
+            <span class="stat-label">Happy Customers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="features__container">
+    <div class="features__header">
+      <div class="features__badge">Why Choose Uncle Bob's?</div>
+      <h2 class="features__title">Crafted for the Serious Angler</h2>
+      <p class="features__subtitle">We're committed to providing the best fishing experience with premium quality products that deliver results</p>
+    </div>
+    
+    <div class="features__grid">
+      <div class="feature-card feature-card--primary">
+        <div class="feature-card__header">
+          <div class="feature-card__icon feature-card__icon--quality">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="feature-card__number">01</div>
+        </div>
+        <div class="feature-card__content">
+          <h3>Premium Quality</h3>
+          <p>Only the finest fishing gear and accessories, tested by professionals and trusted by anglers worldwide.</p>
+          <div class="feature-card__highlight">Professional Grade</div>
+        </div>
+      </div>
+      
+      <div class="feature-card feature-card--secondary">
+        <div class="feature-card__header">
+          <div class="feature-card__icon feature-card__icon--expert">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="feature-card__number">02</div>
+        </div>
+        <div class="feature-card__content">
+          <h3>Expert Knowledge</h3>
+          <p>Years of fishing experience and expertise to guide you to the best products for your needs.</p>
+          <div class="feature-card__highlight">50+ Years Experience</div>
+        </div>
+      </div>
+      
+      <div class="feature-card feature-card--accent">
+        <div class="feature-card__header">
+          <div class="feature-card__icon feature-card__icon--shipping">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <div class="feature-card__number">03</div>
+        </div>
+        <div class="feature-card__content">
+          <h3>Fast Shipping</h3>
+          <p>Quick and reliable delivery to get your fishing gear to you when you need it most.</p>
+          <div class="feature-card__highlight">Free Shipping Over $50</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="features__cta">
+      <div class="features__cta-content">
+        <h3>Ready to Elevate Your Fishing Game?</h3>
+        <p>Join thousands of satisfied anglers who trust Uncle Bob's for their fishing needs</p>
+        <a href="{{ routes.collections_url }}" class="btn btn-primary btn--large">
+          <span>Start Shopping</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero__text {
+    color: var(--brand-background);
+  }
+
+  .hero__badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--brand-background);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.1;
+  }
+
+  .hero__subtitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--ocean-light);
+    margin-bottom: 2rem;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero__description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__actions .btn {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .hero__visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero__logo-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero__logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    color: var(--brand-background);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+
+  .features {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--brand-surface) 0%, rgba(135, 206, 235, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="wave" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 Q25,0 50,10 T100,10 V20 H0 Z" fill="rgba(0,102,204,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23wave)"/></svg>') repeat-x;
+    opacity: 0.3;
+    animation: wave 20s linear infinite;
+  }
+
+  @keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100px); }
+  }
+
+  .features__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+    position: relative;
+    z-index: 2;
+  }
+
+  .features__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .features__badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+    color: var(--brand-background);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  .features__title {
+    font-size: 3rem;
+    color: var(--brand-text);
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .features__subtitle {
+    font-size: 1.3rem;
+    color: var(--brand-text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .feature-card {
+    background: var(--brand-background);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 102, 204, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  }
+
+  .feature-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 102, 204, 0.15);
+    border-color: var(--brand-primary);
+  }
+
+  .feature-card--primary::before {
+    background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+  }
+
+  .feature-card--secondary::before {
+    background: linear-gradient(90deg, var(--brand-secondary), var(--brand-accent));
+  }
+
+  .feature-card--accent::before {
+    background: linear-gradient(90deg, var(--brand-accent), var(--ocean-light));
+  }
+
+  .feature-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .feature-card__icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-background);
+    position: relative;
+  }
+
+  .feature-card__icon--quality {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+  }
+
+  .feature-card__icon--expert {
+    background: linear-gradient(135deg, var(--brand-secondary), var(--brand-accent));
+  }
+
+  .feature-card__icon--shipping {
+    background: linear-gradient(135deg, var(--brand-accent), var(--ocean-light));
+  }
+
+  .feature-card__number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--brand-text);
+    opacity: 0.1;
+  }
+
+  .feature-card__content h3 {
+    font-size: 1.8rem;
+    color: var(--brand-text);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .feature-card__content p {
+    color: var(--brand-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .feature-card__highlight {
+    display: inline-block;
+    background: var(--brand-surface);
+    color: var(--brand-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .features__cta {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    color: var(--brand-background);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .features__cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
+  .features__cta-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .features__cta h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .features__cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .btn--large {
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    background: var(--brand-background);
+    color: var(--brand-primary);
+    border: 2px solid var(--brand-background);
+    transition: all 0.3s ease;
+  }
+
+  .btn--large:hover {
+    background: transparent;
+    color: var(--brand-background);
+    border-color: var(--brand-background);
+    transform: translateY(-3px);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .hero {
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .hero__container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .hero__title {
+      font-size: 3rem;
+    }
+
+    .hero__subtitle {
+      font-size: 1.5rem;
+    }
+
+    .hero__description {
+      font-size: 1.1rem;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
+    .hero__visual {
+      order: -1;
+    }
+
+    .hero__logo-container {
+      width: 150px;
+      height: 150px;
+    }
+
+    .hero__logo {
+      width: 100px;
+      height: 100px;
+    }
+
+    .features__title {
+      font-size: 2.5rem;
+    }
+
+    .features__subtitle {
+      font-size: 1.1rem;
+    }
+
+    .features__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .feature-card {
+      padding: 2.5rem 2rem;
+    }
+
+    .features__cta {
+      padding: 2.5rem 2rem;
+    }
+
+    .features__cta h3 {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__title {
+      font-size: 2.5rem;
+    }
+
+    .hero__subtitle {
+      font-size: 1.3rem;
+    }
+
+    .hero__content {
+      padding: 0 1rem;
+    }
+
+    .hero__logo-container {
+      width: 120px;
+      height: 120px;
+    }
+
+    .hero__logo {
+      width: 80px;
+      height: 80px;
+    }
+
+    .features__title {
+      font-size: 2rem;
+    }
+
+    .feature-card {
+      padding: 2rem 1.5rem;
+    }
+
+    .feature-card__content h3 {
+      font-size: 1.5rem;
+    }
+
+    .features__cta {
+      padding: 2rem 1.5rem;
+    }
+
+    .features__cta h3 {
+      font-size: 1.6rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Homepage Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "Welcome to Uncle Bob's"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Hero Subtitle",
+      "default": "Elevate Your Angling Adventure"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_description",
+      "label": "Hero Description",
+      "default": "Through quality products, we help you achieve an enjoyable fishing experience. Discover our premium fishing gear, tackle, and accessories designed for the serious angler."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "Explore Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Hero",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}
