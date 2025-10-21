@@ -1,45 +1,386 @@
 {% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
+  Uncle Bob's Product Detail Page
 {% endcomment %}
 
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
+<div class="product-page">
+  <div class="product-container">
+    <div class="product-media">
+      <div class="product-images">
+        {% for image in product.images %}
+          <div class="product-image-container">
+            {% render 'image', class: 'product-image', image: image %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
 
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
-
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
-
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
+    <div class="product-details">
+      <div class="product-header">
+        <h1 class="product-title">{{ product.title }}</h1>
+        <div class="product-price">
+          {% if product.compare_at_price > product.price %}
+            <span class="product-price-sale">{{ product.price | money }}</span>
+            <span class="product-price-compare">{{ product.compare_at_price | money }}</span>
+            <span class="product-discount">
+              Save {{ product.compare_at_price | minus: product.price | money }}
+            </span>
+          {% else %}
+            <span class="product-price-regular">{{ product.price | money }}</span>
           {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
+        </div>
+      </div>
 
-    <input type="text" name="quantity" min="1" value="1">
+      <div class="product-description">
+        {{ product.description }}
+      </div>
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
+      <div class="product-form">
+        {% form 'product', product, class: 'product-form-container' %}
+          {% assign current_variant = product.selected_or_first_available_variant %}
+
+          {% if product.variants.size > 1 %}
+            <div class="product-variants">
+              <label for="product-variant-select" class="variant-label">Select Options:</label>
+              <select name="id" id="product-variant-select" class="variant-select">
+                {% for variant in product.variants %}
+                  <option
+                    value="{{ variant.id }}"
+                    {% if variant == current_variant %}selected="selected"{% endif %}
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                    {{ variant.title }} - {{ variant.price | money }}
+                    {% unless variant.available %} (Sold Out){% endunless %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
+
+          <div class="product-quantity">
+            <label for="product-quantity" class="quantity-label">Quantity:</label>
+            <div class="quantity-controls">
+              <button type="button" class="quantity-btn quantity-decrease">-</button>
+              <input type="number" name="quantity" id="product-quantity" min="1" value="1" class="quantity-input">
+              <button type="button" class="quantity-btn quantity-increase">+</button>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            {% if product.available %}
+              <button type="submit" class="btn btn-primary btn-add-to-cart">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="9" cy="21" r="1"/>
+                  <circle cx="20" cy="21" r="1"/>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                Add to Cart
+              </button>
+            {% else %}
+              <button type="button" class="btn btn-secondary" disabled>
+                Out of Stock
+              </button>
+            {% endif %}
+            
+            {{ form | payment_button }}
+          </div>
+        {% endform %}
+      </div>
+
+      <div class="product-features">
+        <h3>Product Features</h3>
+        <ul class="features-list">
+          <li>Premium quality materials</li>
+          <li>Professional grade construction</li>
+          <li>Designed for serious anglers</li>
+          <li>Backed by Uncle Bob's guarantee</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
+
+{% stylesheet %}
+  .product-page {
+    padding: 2rem 0 4rem;
+    background-color: var(--brand-background);
+  }
+
+  .product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .product-media {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .product-image-container {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background-color: var(--brand-surface);
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .product-header {
+    border-bottom: 1px solid rgba(0, 102, 204, 0.1);
+    padding-bottom: 1.5rem;
+  }
+
+  .product-title {
+    font-size: 2.5rem;
+    color: var(--brand-text);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .product-price-regular,
+  .product-price-sale {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+  }
+
+  .product-price-compare {
+    font-size: 1.5rem;
+    color: var(--brand-text-muted);
+    text-decoration: line-through;
+  }
+
+  .product-discount {
+    background-color: var(--brand-accent);
+    color: var(--brand-background);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .product-description {
+    color: var(--brand-text-muted);
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  .product-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .product-variants {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .variant-label,
+  .quantity-label {
+    font-weight: 600;
+    color: var(--brand-text);
+    font-size: 1rem;
+  }
+
+  .variant-select {
+    padding: 1rem;
+    border: 2px solid rgba(0, 102, 204, 0.2);
+    border-radius: var(--border-radius);
+    background-color: var(--brand-background);
+    color: var(--brand-text);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .variant-select:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+  }
+
+  .product-quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 2px solid rgba(0, 102, 204, 0.2);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: var(--brand-surface);
+    color: var(--brand-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quantity-btn:hover {
+    background-color: var(--brand-primary);
+    color: var(--brand-background);
+  }
+
+  .quantity-input {
+    width: 60px;
+    height: 40px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--brand-background);
+    color: var(--brand-text);
+  }
+
+  .quantity-input:focus {
+    outline: none;
+  }
+
+  .product-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-add-to-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .product-features {
+    background-color: var(--brand-surface);
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(0, 102, 204, 0.1);
+  }
+
+  .product-features h3 {
+    color: var(--brand-text);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .features-list li {
+    padding: 0.5rem 0;
+    color: var(--brand-text-muted);
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .features-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--brand-accent);
+    font-weight: 700;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .product-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .product-media {
+      position: static;
+    }
+
+    .product-title {
+      font-size: 2rem;
+    }
+
+    .product-price-regular,
+    .product-price-sale {
+      font-size: 1.5rem;
+    }
+
+    .product-price-compare {
+      font-size: 1.2rem;
+    }
+
+    .product-actions {
+      flex-direction: column;
+    }
+
+    .btn-add-to-cart {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-title {
+      font-size: 1.8rem;
+    }
+
+    .product-price {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .quantity-controls {
+      width: 100%;
+    }
+
+    .quantity-input {
+      flex: 1;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

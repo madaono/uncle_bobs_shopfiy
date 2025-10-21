@@ -1,8 +1,8 @@
 {
   "404": {
-    "title": "404",
-    "not_found": "Page not found.",
-    "back_to_shopping": "Back to shopping"
+    "title": "404 - Page Not Found",
+    "not_found": "Sorry, we couldn't find the page you're looking for.",
+    "back_to_shopping": "Back to Shopping"
   },
   "blog": {
     "article_comments": "Comments",
@@ -10,43 +10,90 @@
     "comment_form_body": "Comment",
     "comment_form_email": "Email",
     "comment_form_name": "Name",
-    "comment_form_submit": "Post",
+    "comment_form_submit": "Post Comment",
     "comment_form_title": "Add a comment"
   },
   "cart": {
     "checkout": "Checkout",
-    "title": "Cart",
-    "update": "Update",
-    "remove": "Remove"
+    "title": "Shopping Cart",
+    "update": "Update Cart",
+    "remove": "Remove Item",
+    "empty": "Your cart is empty",
+    "continue_shopping": "Continue Shopping"
   },
   "customers": {
     "login": {
-      "email": "Email",
+      "email": "Email Address",
       "password": "Password",
-      "submit": "Sign in",
-      "title": "Login"
+      "submit": "Sign In",
+      "title": "Customer Login"
     }
   },
   "collections": {
-    "title": "Collections"
+    "title": "Fishing Collections",
+    "all_products": "All Products",
+    "featured": "Featured Collections"
+  },
+  "general": {
+    "header": "Header",
+    "footer": "Footer",
+    "collections_grid": "Collections Grid",
+    "collection": "Collection",
+    "product": "Product"
+  },
+  "labels": {
+    "menu": "Navigation Menu",
+    "show_payment_icons": "Show Payment Icons",
+    "grid_item_width": "Grid Item Size",
+    "grid_gap": "Grid Gap"
+  },
+  "options": {
+    "size": {
+      "small": "Small",
+      "large": "Large"
+    }
   },
   "gift_card": {
     "add_to_apple_wallet": "Add to Apple Wallet",
-    "card": "Gift card",
+    "card": "Gift Card",
     "expired": "This gift card has expired",
     "expires_on": "Expires on {{ expires_on }}",
     "use_at_checkout": "Use this gift card at checkout"
   },
   "password": {
-    "title": "This shop is private",
+    "title": "Store Coming Soon",
     "password": "Password",
-    "enter": "Enter"
+    "enter": "Enter Store"
   },
   "search": {
-    "title": "Search",
-    "placeholder": "Search articles, pages, or products",
+    "title": "Search Products",
+    "placeholder": "Search fishing gear and accessories",
     "submit": "Search",
-    "no_results_html": "No results found for {{ terms }}",
-    "results_for_html": "{{ count }} results found for {{ terms }}"
+    "no_results_html": "No products found for '{{ terms }}'",
+    "results_for_html": "{{ count }} products found for '{{ terms }}'"
+  },
+  "products": {
+    "add_to_cart": "Add to Cart",
+    "sold_out": "Sold Out",
+    "unavailable": "Unavailable",
+    "on_sale": "On Sale",
+    "product_variants": "Product Options",
+    "quantity": "Quantity",
+    "price": "Price",
+    "compare_at_price": "Compare at Price",
+    "vendor": "Brand",
+    "sku": "SKU",
+    "availability": "Availability",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock"
+  },
+  "navigation": {
+    "home": "Home",
+    "collections": "Collections",
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact",
+    "account": "My Account",
+    "cart": "Cart"
   }
 }

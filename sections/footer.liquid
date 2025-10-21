@@ -1,39 +1,277 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__brand">
+      <div class="footer__logo">
+        <img src="{{ 'headerLogo.png' | asset_url }}" alt="Uncle Bob's" class="footer__logo-img">
+        <div class="footer__brand-text">
+          <h3 class="footer__title">Uncle Bob's</h3>
+          <p class="footer__tagline">Premium Fishing Experience</p>
+        </div>
+      </div>
+      <p class="footer__description">
+        Through quality products, we help you achieve an enjoyable fishing experience. 
+        Discover our premium fishing gear and accessories.
+      </p>
+    </div>
+
+    <div class="footer__links">
+      <div class="footer__section">
+        <h4 class="footer__section-title">Shop</h4>
+        <ul class="footer__menu">
+          {% for link in section.settings.menu.links %}
+            <li><a href="{{ link.url }}" class="footer__link">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer__section">
+        <h4 class="footer__section-title">Support</h4>
+        <ul class="footer__menu">
+          <li><a href="{{ routes.account_url }}" class="footer__link">My Account</a></li>
+          <li><a href="{{ routes.cart_url }}" class="footer__link">Shopping Cart</a></li>
+          <li><a href="/pages/contact" class="footer__link">Contact Us</a></li>
+          <li><a href="/pages/shipping" class="footer__link">Shipping Info</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__section">
+        <h4 class="footer__section-title">Connect</h4>
+        <div class="footer__social">
+          <p class="footer__social-text">Follow us for fishing tips and updates</p>
+          <div class="footer__social-links">
+            <a href="#" class="footer__social-link" aria-label="Facebook">Facebook</a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">Instagram</a>
+            <a href="#" class="footer__social-link" aria-label="YouTube">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
+  <div class="footer__bottom">
+    <div class="footer__bottom-container">
+      <div class="footer__copyright">
+        <p>&copy; {{ 'now' | date: '%Y' }} Uncle Bob's. All rights reserved.</p>
+      </div>
 
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
-    {% endif %}
+      <div class="footer__payment">
+        {% if section.settings.show_payment_icons %}
+          <div class="footer__payment-icons">
+            {% for type in shop.enabled_payment_types %}
+              <div class="footer__payment-icon">
+                {{ type | payment_type_svg_tag }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
   </div>
 </footer>
 
 {% stylesheet %}
-  footer {
+  .footer {
+    background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--brand-primary) 100%);
+    color: var(--brand-background);
+    margin-top: 4rem;
+  }
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem var(--page-margin);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+
+  .footer__brand {
     display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
   }
-  footer a {
+
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer__logo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .footer__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-background);
+    margin: 0;
+  }
+
+  .footer__tagline {
+    font-size: 0.9rem;
+    color: var(--ocean-light);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .footer__description {
+    color: var(--ocean-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer__links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .footer__section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brand-background);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .footer__section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--brand-accent);
+  }
+
+  .footer__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__menu li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer__link {
+    color: var(--ocean-light);
     text-decoration: none;
-    color: var(--color-foreground);
+    transition: color 0.3s ease;
+    display: block;
+    padding: 0.25rem 0;
   }
-  footer .footer__links,
-  footer .footer__payment {
+
+  .footer__link:hover {
+    color: var(--brand-background);
+    text-decoration: underline;
+  }
+
+  .footer__social-text {
+    color: var(--ocean-light);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .footer__social-links {
     display: flex;
     gap: 1rem;
+  }
+
+  .footer__social-link {
+    color: var(--brand-background);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .footer__social-link:hover {
+    background-color: var(--brand-accent);
+    transform: translateY(-2px);
+  }
+
+  .footer__bottom {
+    background-color: var(--ocean-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer__bottom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem var(--page-margin);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__copyright p {
+    color: var(--ocean-light);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .footer__payment-icons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .footer__payment-icon {
+    background-color: var(--brand-background);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer__payment-icon svg {
+    height: 20px;
+    width: auto;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .footer__container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem var(--page-margin);
+    }
+
+    .footer__links {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .footer__bottom-container {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .footer__social-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer__logo {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer__logo-img {
+      width: 50px;
+      height: 50px;
+    }
   }
 {% endstylesheet %}
 

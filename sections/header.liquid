@@ -1,54 +1,234 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+<header class="header">
+  <div class="header__container">
+    <div class="header__brand">
+      <a href="{{ routes.root_url }}" class="header__logo">
+        <img src="{{ 'headerLogo.png' | asset_url }}" alt="Uncle Bob's" class="header__logo-img">
+        <div class="header__brand-text">
+          <h1 class="header__title">Uncle Bob's</h1>
+          <p class="header__tagline">Premium Fishing Experience</p>
+        </div>
+      </a>
+    </div>
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
+    <nav class="header__nav">
+      <div class="header__menu">
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+    </nav>
 
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
+    <div class="header__actions">
+      {% if shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}" class="header__icon" aria-label="Account">
+          {{ 'icon-account.svg' | inline_asset_content }}
+        </a>
       {% endif %}
 
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
+      <a href="{{ routes.cart_url }}" class="header__icon header__cart" aria-label="Shopping Cart">
+        <span class="header__cart-count" {% if cart.item_count == 0 %}style="display: none;"{% endif %}>
+          {{ cart.item_count }}
+        </span>
+        {{ 'icon-cart.svg' | inline_asset_content }}
+      </a>
+    </div>
   </div>
 </header>
 
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .header {
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--page-margin);
+    padding-right: var(--page-margin);
   }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
+
+  .header__brand {
     display: flex;
+    align-items: center;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--brand-background);
+    transition: transform 0.3s ease;
+  }
+
+  .header__logo:hover {
+    transform: scale(1.05);
+  }
+
+  .header__logo-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .header__brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--brand-background);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .header__tagline {
+    font-size: 0.9rem;
+    color: var(--ocean-light);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .header__nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header__menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__menu-link {
+    color: var(--brand-background);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .header__menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .header__menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--brand-accent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .header__menu-link:hover::after {
+    width: 100%;
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
     gap: 1rem;
+  }
+
+  .header__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--brand-background);
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .header__icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+
+  .header__icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--brand-accent);
+    color: var(--brand-background);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .header__container {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header__nav {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .header__menu {
+      gap: 1rem;
+    }
+
+    .header__menu-link {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .header__title {
+      font-size: 1.5rem;
+    }
+
+    .header__tagline {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .header__brand-text {
+      display: none;
+    }
+
+    .header__logo-img {
+      margin-right: 0;
+    }
   }
 {% endstylesheet %}
 
