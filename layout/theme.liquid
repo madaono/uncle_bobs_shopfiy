@@ -19,9 +19,22 @@
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Shopify Inbox CSS Control -->
+    <style>
+      /* 默认隐藏聊天按钮 */
+      #shopify-chat {
+        display: none !important;
+      }
+      
+      /* 仅在商品页面显示聊天按钮 */
+      .template-product #shopify-chat {
+        display: block !important;
+      }
+    </style>
   </head>
 
-  <body class="uncle-bobs-theme">
+  <body class="uncle-bobs-theme template-{{ template | split: '.' | first }}">
     {% sections 'header-group' %}
 
     <main class="main-content">
