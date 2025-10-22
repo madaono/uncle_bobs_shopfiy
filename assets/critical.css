@@ -152,7 +152,7 @@ h3 {
 }
 
 p {
-  color: var(--brand-text-muted);
+  color: var(--brand-surface);
   margin-bottom: 1rem;
 }
 
