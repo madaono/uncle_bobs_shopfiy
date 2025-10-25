@@ -9,62 +9,47 @@
     </div>
 
     <div class="bestsellers__grid">
-      <div class="product-card">
-        <div class="product-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Spinning Reel" class="product-card__image">
+      {% for product in collections.all.products limit: 4 %}
+        <div class="product-card">
+          <a href="{{ product.url }}" class="product-card__link">
+            <div class="product-card__image-container">
+              {% if product.featured_image %}
+                {% render 'image',
+                  class: 'product-card__image',
+                  image: product.featured_image,
+                  width: 300,
+                  height: 200,
+                  crop: 'center'
+                %}
+              {% else %}
+                <img src="{{ 'bobFishing.png' | asset_url }}" alt="{{ product.title }}" class="product-card__image">
+              {% endif %}
+            </div>
+            <div class="product-card__content">
+              <h3 class="product-card__title">{{ product.title }}</h3>
+              <div class="product-card__price">
+                {% if product.compare_at_price > product.price %}
+                  <span class="product-card__price-sale">{{ product.price | money }}</span>
+                  <span class="product-card__price-compare">{{ product.compare_at_price | money }}</span>
+                {% else %}
+                  {{ product.price | money }}
+                {% endif %}
+              </div>
+              {% if product.available %}
+                <div class="product-card__rating">
+                  <span class="product-card__stars">★★★★★</span>
+                  <span class="product-card__reviews">In Stock</span>
+                </div>
+              {% else %}
+                <div class="product-card__rating">
+                  <span class="product-card__stars">★★★★★</span>
+                  <span class="product-card__reviews">Out of Stock</span>
+                </div>
+              {% endif %}
+            </div>
+          </a>
         </div>
-        <div class="product-card__content">
-          <h3 class="product-card__title">Uncle Bob's "Deep Dive" Spinning Reel</h3>
-          <div class="product-card__price">$113.50</div>
-          <div class="product-card__rating">
-            <span class="product-card__stars">★★★★★</span>
-            <span class="product-card__reviews">977*** SIDOS</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Tackle Storage" class="product-card__image">
-        </div>
-        <div class="product-card__content">
-          <h3 class="product-card__title">Uncle Bob's Tackle Buddy Storage</h3>
-          <div class="product-card__price">$33.90</div>
-          <div class="product-card__rating">
-            <span class="product-card__stars">★★★★★</span>
-            <span class="product-card__reviews">4.7A** 5498</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Braided Line" class="product-card__image">
-        </div>
-        <div class="product-card__content">
-          <h3 class="product-card__title">Uncle Bob's "Hydro-Glide" Braided Line</h3>
-          <div class="product-card__price">$13.00</div>
-          <div class="product-card__rating">
-            <span class="product-card__stars">★★★★★</span>
-            <span class="product-card__reviews">677** 24098</span>
-          </div>
-          <button class="product-card__add-to-cart">Add to Cart</button>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Sunglasses" class="product-card__image">
-        </div>
-        <div class="product-card__content">
-          <h3 class="product-card__title">Uncle River View</h3>
-          <div class="product-card__price">$73.00</div>
-          <div class="product-card__rating">
-            <span class="product-card__stars">★★★★★</span>
-            <span class="product-card__reviews">6.7A** 50/8s</span>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -107,6 +92,12 @@
     transition: all 0.3s ease;
   }
 
+  .product-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
   .product-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
@@ -146,6 +137,18 @@
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 0.8rem;
+  }
+
+  .product-card__price-sale {
+    color: #e74c3c;
+    font-weight: 700;
+  }
+
+  .product-card__price-compare {
+    color: #95a5a6;
+    text-decoration: line-through;
+    font-size: 1rem;
+    margin-left: 0.5rem;
   }
 
   .product-card__rating {

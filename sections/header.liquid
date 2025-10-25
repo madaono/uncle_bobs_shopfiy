@@ -9,12 +9,10 @@
     <nav class="header__nav">
       <div class="header__menu">
         <a href="{{ routes.root_url }}" class="header__menu-link">Home</a>
-        <a href="/collections/rods" class="header__menu-link">Rods</a>
-        <a href="/collections/reels" class="header__menu-link">Reels</a>
-        <a href="/collections/lures" class="header__menu-link">Lures</a>
-        <a href="/collections/apparel" class="header__menu-link">Apparel</a>
-        <a href="/collections/accessories" class="header__menu-link">Accessories</a>
-        <a href="/collections/all" class="header__menu-link">All Products</a>
+        {% for collection in collections limit: 5 %}
+          <a href="{{ collection.url }}" class="header__menu-link">{{ collection.title }}</a>
+        {% endfor %}
+        <a href="{{ routes.collections_url }}" class="header__menu-link">All Products</a>
       </div>
     </nav>
 

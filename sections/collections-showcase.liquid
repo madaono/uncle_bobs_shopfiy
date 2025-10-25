@@ -10,43 +10,29 @@
     </div>
 
     <div class="collections-showcase__grid">
-      <div class="collection-card collection-card--rods">
-        <div class="collection-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Fishing Rods" class="collection-card__image">
-          <div class="collection-card__overlay">
-            <h3 class="collection-card__title">FISHING RODS</h3>
-            <div class="collection-card__buttons">
-              <a href="/collections/rods" class="collection-card__btn">Shop Rods</a>
-              <a href="/collections/rods" class="collection-card__btn">Shop Rods</a>
+      {% for collection in collections limit: 3 %}
+        <div class="collection-card">
+          <div class="collection-card__image-container">
+            {% if collection.featured_image %}
+              {% render 'image',
+                class: 'collection-card__image',
+                image: collection.featured_image,
+                width: 400,
+                height: 300,
+                crop: 'center'
+              %}
+            {% else %}
+              <img src="{{ 'bobFishing.png' | asset_url }}" alt="{{ collection.title }}" class="collection-card__image">
+            {% endif %}
+            <div class="collection-card__overlay">
+              <h3 class="collection-card__title">{{ collection.title | upcase }}</h3>
+              <div class="collection-card__buttons">
+                <a href="{{ collection.url }}" class="collection-card__btn">Shop {{ collection.title }}</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="collection-card collection-card--lures">
-        <div class="collection-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="High Performance Lures" class="collection-card__image">
-          <div class="collection-card__overlay">
-            <h3 class="collection-card__title">HIGH PERFORMANCE LURES</h3>
-            <div class="collection-card__buttons">
-              <a href="/collections/lures" class="collection-card__btn">Shop Lures</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="collection-card collection-card--apparel">
-        <div class="collection-card__image-container">
-          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Apparel & Gear" class="collection-card__image">
-          <div class="collection-card__overlay">
-            <h3 class="collection-card__title">APPAREL & GEAR</h3>
-            <div class="collection-card__buttons">
-              <a href="/collections/lures" class="collection-card__btn">Shop Lures</a>
-              <a href="/collections/apparel" class="collection-card__btn">Shop Apparel</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
