@@ -1,0 +1,278 @@
+{% comment %}
+  Uncle Bob's Best Sellers Section
+{% endcomment %}
+
+<div class="bestsellers">
+  <div class="bestsellers__container">
+    <div class="bestsellers__header">
+      <h2 class="bestsellers__title">Our Best Sellers</h2>
+    </div>
+
+    <div class="bestsellers__grid">
+      <div class="product-card">
+        <div class="product-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Spinning Reel" class="product-card__image">
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Uncle Bob's "Deep Dive" Spinning Reel</h3>
+          <div class="product-card__price">$113.50</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">977*** SIDOS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Tackle Storage" class="product-card__image">
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Uncle Bob's Tackle Buddy Storage</h3>
+          <div class="product-card__price">$33.90</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">4.7A** 5498</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Braided Line" class="product-card__image">
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Uncle Bob's "Hydro-Glide" Braided Line</h3>
+          <div class="product-card__price">$13.00</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">677** 24098</span>
+          </div>
+          <button class="product-card__add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Sunglasses" class="product-card__image">
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">Uncle River View</h3>
+          <div class="product-card__price">$73.00</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">6.7A** 50/8s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .bestsellers {
+    background-color: #F5F5F5;
+    padding: 4rem 0;
+  }
+
+  .bestsellers__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .bestsellers__header {
+    margin-bottom: 3rem;
+  }
+
+  .bestsellers__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .bestsellers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .product-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-card__image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-card__image {
+    transform: scale(1.05);
+  }
+
+  .product-card__content {
+    padding: 1.5rem;
+  }
+
+  .product-card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .product-card__price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-card__stars {
+    color: #ffc107;
+    font-size: 0.9rem;
+  }
+
+  .product-card__reviews {
+    font-size: 0.8rem;
+    color: #6c757d;
+  }
+
+  .product-card__add-to-cart {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .product-card__add-to-cart:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 1024px) {
+    .bestsellers__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bestsellers {
+      padding: 3rem 0;
+    }
+
+    .bestsellers__container {
+      padding: 0 1rem;
+    }
+
+    .bestsellers__title {
+      font-size: 2rem;
+    }
+
+    .bestsellers__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .product-card__image-container {
+      height: 180px;
+    }
+
+    .product-card__content {
+      padding: 1rem;
+    }
+
+    .product-card__title {
+      font-size: 0.9rem;
+    }
+
+    .product-card__price {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .bestsellers__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .product-card__image-container {
+      height: 160px;
+    }
+
+    .product-card__content {
+      padding: 0.8rem;
+    }
+
+    .product-card__title {
+      font-size: 0.8rem;
+    }
+
+    .product-card__price {
+      font-size: 1rem;
+    }
+
+    .product-card__add-to-cart {
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Best Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Best Sellers"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

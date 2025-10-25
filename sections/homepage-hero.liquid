@@ -2,47 +2,24 @@
   Uncle Bob's Homepage Hero Section
 {% endcomment %}
 
-<div class="hero-banner">
-  <img src="{{ 'banner.png' | asset_url }}" alt="Fishing Adventure" class="hero-banner__image">
-</div>
-
-<div class="hero-content">
-  <div class="hero-content__container">
-    <div class="hero-content__text">
-      <div class="hero-content__badge">Quality • Value • Experience</div>
-      <h1 class="hero-content__title">{{ section.settings.hero_title | default: "Welcome to Uncle Bob's" }}</h1>
-      <p class="hero-content__subtitle">{{ section.settings.hero_subtitle | default: "Premium Fishing Gear at Unbeatable Prices" }}</p>
-      <p class="hero-content__description">
-        {{ section.settings.hero_description | default: "We're passionate about bringing you high-quality fishing equipment at prices that won't break the bank. Every product is carefully selected and tested to ensure your fishing success." }}
-      </p>
-      <div class="hero-content__actions">
-        <a href="{{ routes.collections_url }}" class="btn btn-primary">
-          <span>{{ section.settings.primary_button_text | default: "Shop Now" }}</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-        <a href="#featured-products" class="btn btn-secondary">
-          <span>{{ section.settings.secondary_button_text | default: "Explore Products" }}</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-    
-    <div class="hero-content__visual">
-      <div class="hero-content__logo-container">
-        <img src="{{ 'bobFishing.png' | asset_url }}" alt="Uncle Bob's Logo" class="hero-content__logo">
-      </div>
-      <div class="hero-content__stats">
-        <div class="stat-item">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Quality Guaranteed</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">Professional</span>
-          <span class="stat-label">Customer Support</span>
+<div class="hero-section">
+  <div class="hero-background">
+    <img src="{{ 'heroHeader.png' | asset_url }}" alt="Fishing Adventure" class="hero-background__image">
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="hero-content">
+    <div class="hero-content__container">
+      <div class="hero-content__text">
+        <h1 class="hero-content__title">ELEVATE ANGLING ADVENTURE</h1>
+        <p class="hero-content__subtitle">Premium Fishing Gear at Unbeatable Prices</p>
+        <div class="hero-content__actions">
+          <a href="{{ routes.collections_url }}" class="btn btn-primary">
+            SHOP NOW
+          </a>
+          <a href="#featured-products" class="btn btn-secondary">
+            LEARN MORE
+          </a>
         </div>
       </div>
     </div>
@@ -127,77 +104,76 @@
 </div>
 
 {% stylesheet %}
-  .hero-banner {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+  .hero-section {
     position: relative;
+    height: 80vh;
+    min-height: 600px;
     overflow: hidden;
   }
 
-  .hero-banner__image {
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-background__image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
   }
 
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+    z-index: 2;
+  }
+
   .hero-content {
-    background: var(--brand-background);
-    padding: 4rem 0;
     position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-content__container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    width: 100%;
   }
 
   .hero-content__text {
-    color: var(--brand-text);
-  }
-
-  .hero-content__badge {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
-    color: var(--brand-background);
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem;
+    text-align: left;
+    max-width: 600px;
   }
 
   .hero-content__title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 800;
-    margin-bottom: 1rem;
-    color: var(--brand-text);
+    margin-bottom: 1.5rem;
+    color: white;
     line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
   .hero-content__subtitle {
     font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--brand-primary);
-    margin-bottom: 2rem;
-    font-style: italic;
-  }
-
-  .hero-content__description {
-    font-size: 1.2rem;
-    line-height: 1.7;
+    font-weight: 400;
+    color: white;
     margin-bottom: 3rem;
-    color: var(--brand-text-muted);
-    max-width: 500px;
+    line-height: 1.4;
   }
 
   .hero-content__actions {
@@ -211,64 +187,36 @@
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-  }
-
-  .hero-content__visual {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .hero-content__logo-container {
-    position: relative;
-    width: 300px;
-    height: 250px;
-    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 40px rgba(0, 102, 204, 0.2);
-    padding: 1rem;
-  }
-
-  .hero-content__logo {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 15px;
-  }
-
-  .hero-content__stats {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .stat-item {
-    text-align: center;
-    color: var(--brand-text);
-  }
-
-  .stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--brand-primary);
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--brand-text-muted);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .hero-content__actions .btn-primary {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+  }
+
+  .hero-content__actions .btn-primary:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(33, 150, 243, 0.3);
+  }
+
+  .hero-content__actions .btn-secondary {
+    background-color: transparent;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+  }
+
+  .hero-content__actions .btn-secondary:hover {
+    background-color: #2196F3;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(33, 150, 243, 0.3);
   }
 
   .features {
@@ -516,40 +464,37 @@
 
   /* Mobile responsiveness */
   @media (max-width: 768px) {
+    .hero-section {
+      height: 70vh;
+      min-height: 500px;
+    }
+
     .hero-content__container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+      padding: 0 1.5rem;
+    }
+
+    .hero-content__text {
       text-align: center;
+      max-width: 100%;
     }
 
     .hero-content__title {
       font-size: 3rem;
+      margin-bottom: 1rem;
     }
 
     .hero-content__subtitle {
-      font-size: 1.5rem;
-    }
-
-    .hero-content__description {
-      font-size: 1.1rem;
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
     }
 
     .hero-content__actions {
       justify-content: center;
     }
 
-    .hero-content__visual {
-      order: -1;
-    }
-
-    .hero-content__logo-container {
-      width: 250px;
-      height: 200px;
-    }
-
-    .hero-content__logo {
-      width: 100%;
-      height: 100%;
+    .hero-content__actions .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
     }
 
     .features__title {
@@ -579,26 +524,35 @@
   }
 
   @media (max-width: 480px) {
-    .hero-content__title {
-      font-size: 2.5rem;
-    }
-
-    .hero-content__subtitle {
-      font-size: 1.3rem;
+    .hero-section {
+      height: 60vh;
+      min-height: 400px;
     }
 
     .hero-content__container {
       padding: 0 1rem;
     }
 
-    .hero-content__logo-container {
-      width: 200px;
-      height: 160px;
+    .hero-content__title {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
     }
 
-    .hero-content__logo {
+    .hero-content__subtitle {
+      font-size: 1.2rem;
+    }
+
+    .hero-content__actions {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-content__actions .btn {
       width: 100%;
-      height: 100%;
+      max-width: 250px;
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
     }
 
     .features__title {

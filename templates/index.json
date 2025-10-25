@@ -13,17 +13,22 @@
       "type": "homepage-hero",
       "settings": {}
     },
-    "featured_products": {
-      "type": "featured-products",
+    "collections_showcase": {
+      "type": "collections-showcase",
       "settings": {
-        "section_title": "Our Best Sellers",
-        "section_description": "Discover our most popular fishing gear and accessories",
-        "products_to_show": 8
+        "title": "Explore Our Collections"
+      }
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "settings": {
+        "title": "Our Best Sellers"
       }
     }
   },
   "order": [
     "main",
-    "featured_products"
+    "collections_showcase",
+    "bestsellers"
   ]
 }

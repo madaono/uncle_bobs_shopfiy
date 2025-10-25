@@ -1,0 +1,248 @@
+{% comment %}
+  Uncle Bob's Collections Showcase Section
+{% endcomment %}
+
+<div class="collections-showcase">
+  <div class="collections-showcase__container">
+    <div class="collections-showcase__header">
+      <h2 class="collections-showcase__title">Explore Our Collections</h2>
+      <div class="collections-showcase__underline"></div>
+    </div>
+
+    <div class="collections-showcase__grid">
+      <div class="collection-card collection-card--rods">
+        <div class="collection-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Fishing Rods" class="collection-card__image">
+          <div class="collection-card__overlay">
+            <h3 class="collection-card__title">FISHING RODS</h3>
+            <div class="collection-card__buttons">
+              <a href="/collections/rods" class="collection-card__btn">Shop Rods</a>
+              <a href="/collections/rods" class="collection-card__btn">Shop Rods</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card collection-card--lures">
+        <div class="collection-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="High Performance Lures" class="collection-card__image">
+          <div class="collection-card__overlay">
+            <h3 class="collection-card__title">HIGH PERFORMANCE LURES</h3>
+            <div class="collection-card__buttons">
+              <a href="/collections/lures" class="collection-card__btn">Shop Lures</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collection-card collection-card--apparel">
+        <div class="collection-card__image-container">
+          <img src="{{ 'bobFishing.png' | asset_url }}" alt="Apparel & Gear" class="collection-card__image">
+          <div class="collection-card__overlay">
+            <h3 class="collection-card__title">APPAREL & GEAR</h3>
+            <div class="collection-card__buttons">
+              <a href="/collections/lures" class="collection-card__btn">Shop Lures</a>
+              <a href="/collections/apparel" class="collection-card__btn">Shop Apparel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .collections-showcase {
+    background-color: #F5F5F5;
+    padding: 4rem 0;
+  }
+
+  .collections-showcase__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .collections-showcase__header {
+    margin-bottom: 3rem;
+  }
+
+  .collections-showcase__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .collections-showcase__underline {
+    width: 60px;
+    height: 4px;
+    background-color: #2196F3;
+    margin-bottom: 2rem;
+  }
+
+  .collections-showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .collection-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .collection-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .collection-card__image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .collection-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-card:hover .collection-card__image {
+    transform: scale(1.05);
+  }
+
+  .collection-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem 1.5rem 1.5rem;
+    color: white;
+  }
+
+  .collection-card__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .collection-card__buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .collection-card__btn {
+    background-color: #2196F3;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
+
+  .collection-card__btn:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .collections-showcase {
+      padding: 3rem 0;
+    }
+
+    .collections-showcase__container {
+      padding: 0 1rem;
+    }
+
+    .collections-showcase__title {
+      font-size: 2rem;
+    }
+
+    .collections-showcase__grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .collection-card__image-container {
+      height: 250px;
+    }
+
+    .collection-card__overlay {
+      padding: 1.5rem 1rem 1rem;
+    }
+
+    .collection-card__title {
+      font-size: 1.1rem;
+    }
+
+    .collection-card__buttons {
+      flex-direction: column;
+    }
+
+    .collection-card__btn {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .collections-showcase__title {
+      font-size: 1.8rem;
+    }
+
+    .collection-card__image-container {
+      height: 200px;
+    }
+
+    .collection-card__overlay {
+      padding: 1rem;
+    }
+
+    .collection-card__title {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .collection-card__btn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.7rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collections Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Explore Our Collections"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections Showcase",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}
