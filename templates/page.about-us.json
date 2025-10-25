@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "main": {
+      "type": "about-us",
+      "settings": {
+        "title": "About Uncle Bob's",
+        "subtitle": "Your trusted partner for quality products and exceptional service",
+        "story_title": "Our Story",
+        "story_content": "<p>Founded with a passion for quality and customer satisfaction, Uncle Bob's has been serving customers with dedication and integrity. We believe in providing exceptional products and service that exceed expectations.</p><p>Our journey began with a simple mission: to offer the best products at fair prices while maintaining the highest standards of customer service. Over the years, we've built lasting relationships with our customers and suppliers, creating a trusted network that benefits everyone involved.</p>",
+        "mission_title": "Our Mission & Values",
+        "mission_1_title": "Quality First",
+        "mission_1_text": "We are committed to providing only the highest quality products to our customers.",
+        "mission_2_title": "Customer Focus",
+        "mission_2_text": "Our customers are at the heart of everything we do. We strive to exceed their expectations.",
+        "mission_3_title": "Trust & Reliability",
+        "mission_3_text": "We build lasting relationships through trust, reliability, and consistent service.",
+        "show_team": false,
+        "team_title": "Meet Our Team",
+        "contact_title": "Get In Touch",
+        "contact_text": "We'd love to hear from you. Contact us for any questions or feedback."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

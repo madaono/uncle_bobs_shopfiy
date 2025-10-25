@@ -1,0 +1,528 @@
+{% comment %}
+  About Us section for Uncle Bob's Shopify theme
+  This section provides information about the company, mission, and values
+{% endcomment %}
+
+<div class="about-us">
+  <div class="about-us__container">
+    <!-- Hero Section -->
+    <div class="about-us__hero">
+      <div class="about-us__hero-content">
+        <h1 class="about-us__title">{{ section.settings.title | default: "About Uncle Bob's" }}</h1>
+        <p class="about-us__subtitle">{{ section.settings.subtitle | default: "Your trusted partner for quality products and exceptional service" }}</p>
+      </div>
+      {% if section.settings.hero_image %}
+        <div class="about-us__hero-image">
+          {% render 'image', image: section.settings.hero_image, alt: section.settings.title %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Our Story Section -->
+    <div class="about-us__story">
+      <div class="about-us__story-content">
+        <h2 class="about-us__section-title">{{ section.settings.story_title | default: "Our Story" }}</h2>
+        <div class="about-us__text">
+          {{ section.settings.story_content | default: "Founded with a passion for quality and customer satisfaction, Uncle Bob's has been serving customers with dedication and integrity. We believe in providing exceptional products and service that exceed expectations." }}
+        </div>
+      </div>
+      {% if section.settings.story_image %}
+        <div class="about-us__story-image">
+          {% render 'image', image: section.settings.story_image, alt: "Our Story" %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Mission & Values Section -->
+    <div class="about-us__mission">
+      <h2 class="about-us__section-title">{{ section.settings.mission_title | default: "Our Mission & Values" }}</h2>
+      <div class="about-us__mission-grid">
+        <div class="about-us__mission-item">
+          <div class="about-us__mission-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="about-us__mission-title">{{ section.settings.mission_1_title | default: "Quality First" }}</h3>
+          <p class="about-us__mission-text">{{ section.settings.mission_1_text | default: "We are committed to providing only the highest quality products to our customers." }}</p>
+        </div>
+        
+        <div class="about-us__mission-item">
+          <div class="about-us__mission-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="about-us__mission-title">{{ section.settings.mission_2_title | default: "Customer Focus" }}</h3>
+          <p class="about-us__mission-text">{{ section.settings.mission_2_text | default: "Our customers are at the heart of everything we do. We strive to exceed their expectations." }}</p>
+        </div>
+        
+        <div class="about-us__mission-item">
+          <div class="about-us__mission-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="about-us__mission-title">{{ section.settings.mission_3_title | default: "Trust & Reliability" }}</h3>
+          <p class="about-us__mission-text">{{ section.settings.mission_3_text | default: "We build lasting relationships through trust, reliability, and consistent service." }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    {% if section.settings.show_team %}
+      <div class="about-us__team">
+        <h2 class="about-us__section-title">{{ section.settings.team_title | default: "Meet Our Team" }}</h2>
+        <div class="about-us__team-grid">
+          {% for block in section.blocks %}
+            {% if block.type == 'team_member' %}
+              <div class="about-us__team-member">
+                {% if block.settings.image %}
+                  <div class="about-us__team-image">
+                    {% render 'image', image: block.settings.image, alt: block.settings.name %}
+                  </div>
+                {% endif %}
+                <h3 class="about-us__team-name">{{ block.settings.name }}</h3>
+                <p class="about-us__team-position">{{ block.settings.position }}</p>
+                <p class="about-us__team-bio">{{ block.settings.bio }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Contact Section -->
+    <div class="about-us__contact">
+      <h2 class="about-us__section-title">{{ section.settings.contact_title | default: "Get In Touch" }}</h2>
+      <p class="about-us__contact-text">{{ section.settings.contact_text | default: "We'd love to hear from you. Contact us for any questions or feedback." }}</p>
+      <div class="about-us__contact-actions">
+        <a href="/pages/contact" class="about-us__contact-btn">Contact Us</a>
+        <a href="{{ routes.root_url }}" class="about-us__contact-btn about-us__contact-btn--secondary">Shop Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-us {
+    background: #f8f9fa;
+    min-height: 100vh;
+  }
+
+  .about-us__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .about-us__hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+  }
+
+  .about-us__hero-content {
+    text-align: left;
+  }
+
+  .about-us__title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1A2B40;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .about-us__subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .about-us__hero-image {
+    text-align: center;
+  }
+
+  .about-us__hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .about-us__story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+  }
+
+  .about-us__section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1A2B40;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .about-us__text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+  }
+
+  .about-us__story-image {
+    text-align: center;
+  }
+
+  .about-us__story-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .about-us__mission {
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+  }
+
+  .about-us__mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .about-us__mission-item {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    background: #f8f9fa;
+    transition: transform 0.3s ease;
+  }
+
+  .about-us__mission-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .about-us__mission-icon {
+    color: #1A2B40;
+    margin-bottom: 1rem;
+  }
+
+  .about-us__mission-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1A2B40;
+    margin-bottom: 1rem;
+  }
+
+  .about-us__mission-text {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .about-us__team {
+    margin-bottom: 4rem;
+    padding: 3rem 0;
+    background: white;
+    border-radius: 12px;
+    padding: 3rem;
+  }
+
+  .about-us__team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .about-us__team-member {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #f8f9fa;
+  }
+
+  .about-us__team-image {
+    margin-bottom: 1rem;
+  }
+
+  .about-us__team-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  .about-us__team-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1A2B40;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-us__team-position {
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .about-us__team-bio {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .about-us__contact {
+    text-align: center;
+    padding: 3rem;
+    background: #1A2B40;
+    color: white;
+    border-radius: 12px;
+  }
+
+  .about-us__contact .about-us__section-title {
+    color: white;
+  }
+
+  .about-us__contact-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .about-us__contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .about-us__contact-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: white;
+    color: #1A2B40;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .about-us__contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .about-us__contact-btn--secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .about-us__contact-btn--secondary:hover {
+    background: white;
+    color: #1A2B40;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .about-us__container {
+      padding: 1rem;
+    }
+
+    .about-us__hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .about-us__title {
+      font-size: 2.5rem;
+    }
+
+    .about-us__story {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .about-us__mission-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-us__team-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-us__contact-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .about-us__contact-btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "About Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "About Uncle Bob's"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Your trusted partner for quality products and exceptional service"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "story_title",
+      "label": "Story Section Title",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "story_content",
+      "label": "Story Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Story Image"
+    },
+    {
+      "type": "text",
+      "id": "mission_title",
+      "label": "Mission Section Title",
+      "default": "Our Mission & Values"
+    },
+    {
+      "type": "text",
+      "id": "mission_1_title",
+      "label": "Mission 1 Title",
+      "default": "Quality First"
+    },
+    {
+      "type": "text",
+      "id": "mission_1_text",
+      "label": "Mission 1 Text",
+      "default": "We are committed to providing only the highest quality products to our customers."
+    },
+    {
+      "type": "text",
+      "id": "mission_2_title",
+      "label": "Mission 2 Title",
+      "default": "Customer Focus"
+    },
+    {
+      "type": "text",
+      "id": "mission_2_text",
+      "label": "Mission 2 Text",
+      "default": "Our customers are at the heart of everything we do. We strive to exceed their expectations."
+    },
+    {
+      "type": "text",
+      "id": "mission_3_title",
+      "label": "Mission 3 Title",
+      "default": "Trust & Reliability"
+    },
+    {
+      "type": "text",
+      "id": "mission_3_text",
+      "label": "Mission 3 Text",
+      "default": "We build lasting relationships through trust, reliability, and consistent service."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_team",
+      "label": "Show Team Section",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "team_title",
+      "label": "Team Section Title",
+      "default": "Meet Our Team"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Section Title",
+      "default": "Get In Touch"
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact Text",
+      "default": "We'd love to hear from you. Contact us for any questions or feedback."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "team_member",
+      "name": "Team Member",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "position",
+          "label": "Position"
+        },
+        {
+          "type": "textarea",
+          "id": "bio",
+          "label": "Bio"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Us"
+    }
+  ]
+}
+{% endschema %}
