@@ -18,6 +18,7 @@
       "blocks": {
         "trafficly_visitors_counter_trafficly_iUe6Xy": {
           "type": "shopify://apps/trafficly-visitors-counter/blocks/trafficly/ff0a9f47-c478-468c-8fa1-f5a7bb122960",
+          "disabled": true,
           "settings": {}
         }
       },
