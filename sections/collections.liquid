@@ -32,9 +32,6 @@
               </svg>
             </div>
           {% endif %}
-          <div class="collection-card__overlay">
-            <span class="collection-card__count">{{ collection.products_count }} Products</span>
-          </div>
         </div>
 
         <div class="collection-card__content">
@@ -146,17 +143,6 @@
     color: var(--brand-primary);
   }
 
-  .collection-card__overlay {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: rgba(0, 102, 204, 0.9);
-    color: var(--brand-background);
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius);
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
 
   .collection-card__content {
     padding: 1.5rem;
