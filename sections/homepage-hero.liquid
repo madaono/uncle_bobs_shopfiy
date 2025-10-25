@@ -103,6 +103,34 @@
   </div>
 </div>
 
+<!-- About Section -->
+<div class="about-section" id="about">
+  <div class="about-section__container">
+    <div class="about-section__content">
+      <h2 class="about-section__title">About Uncle Bob's</h2>
+      <p class="about-section__subtitle">Your trusted partner for quality products and exceptional service</p>
+      <div class="about-section__text">
+        <p>Founded with a passion for quality and customer satisfaction, Uncle Bob's has been serving customers with dedication and integrity. We believe in providing exceptional products and service that exceed expectations.</p>
+        <p>Our journey began with a simple mission: to offer the best products at fair prices while maintaining the highest standards of customer service. Over the years, we've built lasting relationships with our customers and suppliers, creating a trusted network that benefits everyone involved.</p>
+      </div>
+      <div class="about-section__values">
+        <div class="about-section__value">
+          <h3>Quality First</h3>
+          <p>We are committed to providing only the highest quality products to our customers.</p>
+        </div>
+        <div class="about-section__value">
+          <h3>Customer Focus</h3>
+          <p>Our customers are at the heart of everything we do. We strive to exceed their expectations.</p>
+        </div>
+        <div class="about-section__value">
+          <h3>Trust & Reliability</h3>
+          <p>We build lasting relationships through trust, reliability, and consistent service.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% stylesheet %}
   .hero-section {
     position: relative;
@@ -573,6 +601,103 @@
 
     .features__cta h3 {
       font-size: 1.6rem;
+    }
+  }
+
+  /* About Section Styles */
+  .about-section {
+    background: #f8f9fa;
+    padding: 4rem 0;
+  }
+
+  .about-section__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .about-section__content {
+    text-align: center;
+  }
+
+  .about-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1A2B40;
+    margin-bottom: 1rem;
+  }
+
+  .about-section__subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+
+  .about-section__text {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: left;
+  }
+
+  .about-section__text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-section__values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .about-section__value {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .about-section__value h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1A2B40;
+    margin-bottom: 1rem;
+  }
+
+  .about-section__value p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* Mobile responsiveness for About Section */
+  @media (max-width: 768px) {
+    .about-section {
+      padding: 3rem 0;
+    }
+
+    .about-section__container {
+      padding: 0 1rem;
+    }
+
+    .about-section__title {
+      font-size: 2rem;
+    }
+
+    .about-section__subtitle {
+      font-size: 1.1rem;
+    }
+
+    .about-section__values {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .about-section__value {
+      padding: 1.5rem;
     }
   }
 {% endstylesheet %}
